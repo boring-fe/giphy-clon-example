@@ -30,7 +30,14 @@ const Details = ({ location, match, history }) => {
             <div className={styles.descriptionContainer}>
               <ul className={styles.detailsList}>
                 <li className={styles.listItem}>{item.title}</li>
-                <li className={styles.listItem}><a href={item.url} target="blank" rel="noopener">Open on GIPHY.COM</a></li>
+                <li className={styles.listItem}>
+                  <a href={item.url} target='blank' rel='noopener'>
+                    Open on GIPHY.COM
+                  </a>
+                </li>
+                <li className={styles.listItem}>
+                  <button>Copy link</button>
+                </li>
               </ul>
             </div>
           </>
