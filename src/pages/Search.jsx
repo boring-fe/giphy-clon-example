@@ -4,21 +4,33 @@ import { searchRequest } from '../api/search';
 import { trendingRequest } from '../api/trending';
 import { Grid } from '../components/Grid';
 import { BackButton } from '../components/BackButton';
-import { parseQuerySearch } from '../utils';
-import styles from './Search.module.css'
-export const Search = ({ location }) => {
+import { getQuery, setToQueryParams } from '../utils';
+import styles from './Search.module.css';
+
+const setOffsetToQuery = (history, location, newOffset) => {
+  // const existingSearch = location.search || '?';
+  // const newSearch = location.search ? `${location.search}&offset=${newOffset}` : `?offset=${newOffset}`
+  const query = setToQueryParams(location, 'offset', newOffset)
+  console.log(query)
+  history.push(`${location.pathname}?${query}`)
+}
+
+export const Search = ({ location, history }) => {
   const [items, setItems] = useState([]);
+  const [offset, setOffset] = useState(parseInt(getQuery(location, 'offset') || '0'));
+  const [limit, setLimit] = useState(10);
   const [total, setTotal] = useState(undefined);
   const [error, setError] = useState(undefined);
+  const [query, setQuery] = useState(getQuery(location, 'q'));
 
-  const search = async (text) => {
+  const search = async (text, flush) => {
     try {
       let makeRequest = trendingRequest;
       if (text) {
         makeRequest = searchRequest;
       }
-      const response = await makeRequest(text);
-      setItems([...items, ...response.data]);
+      const response = await makeRequest(text, limit, offset);
+      setItems(flush ? response.data : [...items, ...response.data]);
       setTotal(response.pagination.total_count);
     } catch (e) {
       setError(e.message);
@@ -26,14 +38,24 @@ export const Search = ({ location }) => {
   };
 
   const loadMore = () => {
+    const newOffset = offset + limit;
+    setOffset(newOffset);
+  };
 
-  }
+
 
   useEffect(() => {
-    const queryParams = parseQuerySearch(location.search);
-    const query = queryParams.get('q');
-    search(query);
+    setQuery(getQuery(location, 'q'));
   }, [location.search]);
+
+  useEffect(() => {
+    search(query, true);
+  }, [query]);
+
+  useEffect(() => {
+    setOffsetToQuery(history, location, offset)
+    search(query);
+  }, [offset]);
 
   return (
     <>
@@ -44,9 +66,11 @@ export const Search = ({ location }) => {
         <BackButton />
         <div>
           {error ? 'Error...' : null}
-          {items ? <Grid items={items} /> : null}
+          {items || items.length > 0 ? <Grid items={items} /> : null}
         </div>
-        <button className={styles.loadMore} onClick={() => loadMore()}>Load More</button>
+        <button className={styles.loadMore} onClick={() => loadMore()}>
+          Load More
+        </button>
       </div>
     </>
   );

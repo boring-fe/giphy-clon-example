@@ -5,7 +5,7 @@ import styles from './App.module.css';
 import { Switch, Route } from 'react-router-dom';
 import { Home, Search, Details } from './pages';
 import { SearchForm } from './components/SearchForm';
-import { parseQuerySearch } from './utils';
+import { getQuery } from './utils';
 
 // gifs/search?api_key=&q=fun&limit=10&offset=0
 
@@ -16,21 +16,12 @@ const App = ({location, history}) => {
   const translteToSearch = (text) => {
     history.push(`/search?q=${text}`)
   }
-  const querySearch = parseQuerySearch(location.search);
-  const u = querySearch.get('q')
-  console.log(querySearch.get('q'))
-  // useEffect(() => {
-  //   const getSeacrhValue = parseQuerySearch(location.search);
-  //   return () => {
-  //     cleanup
-  //   }
-  // }, [input])
-
+  const querySeacrh = getQuery(location, 'q') || ''
 
   return (
     <>
       <header className={styles.header}>
-        <SearchForm onSubmit={translteToSearch} value={u}/>
+        <SearchForm onSubmit={translteToSearch} value={querySeacrh}/>
       </header>
       <main className={styles.main}>
         <Switch>

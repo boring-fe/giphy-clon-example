@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import styles from './Card.module.css';
 
 const Card = ({
@@ -42,5 +42,7 @@ const Card = ({
     </a>
   );
 };
-
-export { Card };
+const wrapped = memo(Card, (props, nextProps) => {
+  return props.id !== nextProps.id
+})
+export { wrapped as Card };

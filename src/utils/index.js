@@ -1,10 +1,11 @@
-export const parseQuerySearch = (str) => {
-  const y = new URLSearchParams(str);
-  const params = new Map();
-  for (let p of y) {
-    console.log(p);
-    params.set(p[0], p[1]);
-  }
-
-  return params;
+export const getQuery = (location, key) => {
+  const y = new URLSearchParams(location.search);
+  return y.get(key) || null;
 };
+
+export const setToQueryParams = (location, param, value) => {
+  let params = new URLSearchParams(location.search);
+  params.set(param, value)
+  console.log(params.toString())
+  return params
+}
