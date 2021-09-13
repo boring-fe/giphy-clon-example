@@ -1,0 +1,29 @@
+.header {
+  height: var(--header-height);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2px;
+}
+.header::after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  bottom:-2px;
+  background: var(--accent-color);
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - var(--header-height) - 2px - var(--footer-height));
+}
+
+.footer {
+  min-height: var(--footer-height);
+  background-color: var(--accent-color)
+}
