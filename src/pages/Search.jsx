@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import { searchRequest } from '../api/search';
 import { trendingRequest } from '../api/trending';
@@ -8,8 +8,6 @@ import { getQuery, setToQueryParams } from '../utils';
 import styles from './Search.module.css';
 
 const setOffsetToQuery = (history, location, newOffset) => {
-  // const existingSearch = location.search || '?';
-  // const newSearch = location.search ? `${location.search}&offset=${newOffset}` : `?offset=${newOffset}`
   const query = setToQueryParams(location, 'offset', newOffset)
   console.log(query)
   history.push(`${location.pathname}?${query}`)
@@ -22,7 +20,7 @@ export const Search = ({ location, history }) => {
   const [total, setTotal] = useState(undefined);
   const [error, setError] = useState(undefined);
   const [query, setQuery] = useState(getQuery(location, 'q'));
-
+  
   const search = async (text, flush) => {
     try {
       let makeRequest = trendingRequest;
@@ -41,8 +39,6 @@ export const Search = ({ location, history }) => {
     const newOffset = offset + limit;
     setOffset(newOffset);
   };
-
-
 
   useEffect(() => {
     setQuery(getQuery(location, 'q'));
