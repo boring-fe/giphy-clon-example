@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 
-import {withRouter} from 'react-router-dom'
+import {withRouter, useHistory, Link} from 'react-router-dom'
 import styles from './App.module.css';
 import { Switch, Route } from 'react-router-dom';
 import { Home, Search, Details } from './pages';
@@ -11,6 +11,7 @@ import { parseQuerySearch } from './utils';
 
 
 const App = ({location, history}) => {
+ 
   console.log(location, history)
   const translteToSearch = (text) => {
     history.push(`/search?q=${text}`)
@@ -33,13 +34,15 @@ const App = ({location, history}) => {
       </header>
       <main className={styles.main}>
         <Switch>
-          <Route path='/' exact render={(props) => <Home {...props} />} />
+          <Route push path='/' exact render={(props) => <Search {...props}/>} />
           <Route
+            push
             path='/gif/:id'
             exact
             render={(props) => <Details {...props} />}
           />
           <Route
+            push
             path='/search'
             exact
             render={(props) => <Search {...props} />}

@@ -4,6 +4,7 @@ import styles from './Card.module.css';
 const Card = ({
   previewUrl,
   title,
+  id,
   username,
   url,
   height,
@@ -18,7 +19,6 @@ const Card = ({
   };
 
   const onLoad = (e) => {
-    console.log('Loaded', e)
     setLoaded(true);
   };
 
@@ -29,9 +29,7 @@ const Card = ({
   return (
     <a
       className={[styles.root, className].join(' ')}
-      href={'#'}
-      rel='noreferrer'
-      target='_blank'
+      href={`/gif/${id}`}
     >
      <img
           src={previewUrl}

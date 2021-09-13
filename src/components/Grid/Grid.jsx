@@ -4,7 +4,7 @@ import styles from './Grid.module.css';
 import { Card } from '../Card';
 
 const Grid = ({ items }) => {
-  const sourceType = 'fixed_height';
+  const sourceType = 'preview_webp';
   const breakpointColumnsObj = {
     default: 4,
     1100: 3,
@@ -19,6 +19,7 @@ const Grid = ({ items }) => {
       {items.map((item) => (
       <div className={styles.myMasonryGrid_column}>
           <Card
+          id={item.id}
           key={item.id}
           url={item.url}
           previewUrl={item.images[sourceType].url}
@@ -29,18 +30,6 @@ const Grid = ({ items }) => {
       </div>
       ))}
     </Masonry>
-    // <div className={styles.root}>
-    // {items.map((item) => (
-    //     <Card
-    //     key={item.id}
-    //     url={item.url}
-    //     previewUrl={item.images[sourceType].url}
-    //     title={item.title}
-    //     width={item.images[sourceType].width}
-    //     height={item.images[sourceType].height}
-    //   />
-    // ))}
-    // </div>
   );
 };
 

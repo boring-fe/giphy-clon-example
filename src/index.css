@@ -25,3 +25,9 @@ body {
   background-color: var(--primary-color);
   color: var(--primary-text-color)
 }
+
+.pageRoot {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: relative;
+}
