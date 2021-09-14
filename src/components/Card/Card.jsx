@@ -1,4 +1,5 @@
 import { memo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Card.module.css';
 
 const Card = ({
@@ -27,9 +28,9 @@ const Card = ({
   }
 
   return (
-    <a
+    <Link
       className={[styles.root, className].join(' ')}
-      href={`/gif/${id}`}
+      to={`${process.env.PUBLIC_URL}/gif/${id}`}
     >
      <img
           src={previewUrl}
@@ -39,7 +40,7 @@ const Card = ({
           className={styles.imgGif}
         />
       <div className={styles.loader} style={loaderInlineStyles}>Loading</div>
-    </a>
+    </Link>
   );
 };
 const wrapped = memo(Card, (props, nextProps) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import styles from './App.module.css';
 import { Switch, Route } from 'react-router-dom';
 import { Search, Details } from './pages';
@@ -10,7 +10,7 @@ import { getQuery } from './utils';
 const App = ({ location, history }) => {
   console.log(location, history);
   const translteToSearch = (text) => {
-    history.push(`/search?q=${text}`);
+    history.push(`${process.env.PUBLIC_URL}/search?q=${text}`);
   };
   const querySeacrh = getQuery(location, 'q') || '';
 
@@ -23,22 +23,23 @@ const App = ({ location, history }) => {
         <Switch>
           <Route
             push
-            path='/'
+            path={`${process.env.PUBLIC_URL}/`}
             exact
             render={(props) => <Search {...props} />}
           />
           <Route
             push
-            path='/gif/:id'
+            path={`${process.env.PUBLIC_URL}/gif/:id`}
             exact
             render={(props) => <Details {...props} />}
           />
           <Route
             push
-            path='/search'
+            path={`${process.env.PUBLIC_URL}/search`}
             exact
             render={(props) => <Search {...props} />}
           />
+          <Redirect to={`${process.env.PUBLIC_URL}/`}/>
         </Switch>
       </main>
       <footer className={styles.footer}>Footer</footer>
