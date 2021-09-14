@@ -1,31 +1,32 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
-import {withRouter, useHistory, Link} from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 import styles from './App.module.css';
 import { Switch, Route } from 'react-router-dom';
-import { Home, Search, Details } from './pages';
+import { Search, Details } from './pages';
 import { SearchForm } from './components/SearchForm';
 import { getQuery } from './utils';
 
-// gifs/search?api_key=&q=fun&limit=10&offset=0
-
-
-const App = ({location, history}) => {
- 
-  console.log(location, history)
+const App = ({ location, history }) => {
+  console.log(location, history);
   const translteToSearch = (text) => {
-    history.push(`/search?q=${text}`)
-  }
-  const querySeacrh = getQuery(location, 'q') || ''
+    history.push(`/search?q=${text}`);
+  };
+  const querySeacrh = getQuery(location, 'q') || '';
 
   return (
     <>
       <header className={styles.header}>
-        <SearchForm onSubmit={translteToSearch} value={querySeacrh}/>
+        <SearchForm onSubmit={translteToSearch} value={querySeacrh} />
       </header>
       <main className={styles.main}>
         <Switch>
-          <Route push path='/' exact render={(props) => <Search {...props}/>} />
+          <Route
+            push
+            path='/'
+            exact
+            render={(props) => <Search {...props} />}
+          />
           <Route
             push
             path='/gif/:id'
