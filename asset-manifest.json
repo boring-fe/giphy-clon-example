@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/giphy-clon-example/static/css/main.cf222c0e.chunk.css",
-    "main.js": "/giphy-clon-example/static/js/main.0c9504e1.chunk.js",
-    "main.js.map": "/giphy-clon-example/static/js/main.0c9504e1.chunk.js.map",
+    "main.js": "/giphy-clon-example/static/js/main.4966553c.chunk.js",
+    "main.js.map": "/giphy-clon-example/static/js/main.4966553c.chunk.js.map",
     "runtime-main.js": "/giphy-clon-example/static/js/runtime-main.3cd4c86d.js",
     "runtime-main.js.map": "/giphy-clon-example/static/js/runtime-main.3cd4c86d.js.map",
-    "static/js/2.6e9ec2a9.chunk.js": "/giphy-clon-example/static/js/2.6e9ec2a9.chunk.js",
-    "static/js/2.6e9ec2a9.chunk.js.map": "/giphy-clon-example/static/js/2.6e9ec2a9.chunk.js.map",
+    "static/js/2.333788fa.chunk.js": "/giphy-clon-example/static/js/2.333788fa.chunk.js",
+    "static/js/2.333788fa.chunk.js.map": "/giphy-clon-example/static/js/2.333788fa.chunk.js.map",
     "static/js/3.8c1fd059.chunk.js": "/giphy-clon-example/static/js/3.8c1fd059.chunk.js",
     "static/js/3.8c1fd059.chunk.js.map": "/giphy-clon-example/static/js/3.8c1fd059.chunk.js.map",
     "index.html": "/giphy-clon-example/index.html",
     "static/css/main.cf222c0e.chunk.css.map": "/giphy-clon-example/static/css/main.cf222c0e.chunk.css.map",
-    "static/js/2.6e9ec2a9.chunk.js.LICENSE.txt": "/giphy-clon-example/static/js/2.6e9ec2a9.chunk.js.LICENSE.txt"
+    "static/js/2.333788fa.chunk.js.LICENSE.txt": "/giphy-clon-example/static/js/2.333788fa.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.3cd4c86d.js",
-    "static/js/2.6e9ec2a9.chunk.js",
+    "static/js/2.333788fa.chunk.js",
     "static/css/main.cf222c0e.chunk.css",
-    "static/js/main.0c9504e1.chunk.js"
+    "static/js/main.4966553c.chunk.js"
   ]
 }
